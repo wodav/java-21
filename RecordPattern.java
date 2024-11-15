@@ -34,6 +34,35 @@ public class RecordPattern {
         if (extendedUser instanceof ExtendedUser u) {
             System.out.println("jobTitle: " + u.job.jobTitle);
         }
+
+        printUserWithPatternMatchingSwitch(null);
+        printUserWithPatternMatchingSwitch(user);
+        printUserWithPatternMatchingSwitch(extendedUser);
+
+        printUserWithPatternMatchingSwitchLogic(null);
+        printUserWithPatternMatchingSwitchLogic(user);
+        printUserWithPatternMatchingSwitchLogic(extendedUser);
+
+    }
+
+    public static void printUserWithPatternMatchingSwitch(Object user){
+        switch (user) {
+            case null -> throw new RuntimeException("No user");
+            case User u -> System.out.println(u.firstName + " " + u.lastName);
+            case ExtendedUser eu -> System.out.println("jobTitle: " + eu.job.jobTitle);
+            default -> System.out.println("Default message");
+        };
+    }
+
+    public static void printUserWithPatternMatchingSwitchLogic(Object user){
+        switch (user) {
+            case null -> throw new RuntimeException("No user");
+            case User u when "firstName".equalsIgnoreCase(u.firstName) -> System.out.println("It's firstName");
+            case User u when "anotherFirstName".equalsIgnoreCase(u.firstName) -> System.out.println("It's anotherFirstName");
+            case ExtendedUser eu when "developer".equalsIgnoreCase(eu.job.jobTitle) -> System.out.println("It's a developer.");
+            case ExtendedUser eu when "designer".equalsIgnoreCase(eu.job.jobTitle) -> System.out.println("It's a designer.");
+            default -> System.out.println("Default message");
+        };
     }
 
 }
