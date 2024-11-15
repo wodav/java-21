@@ -35,17 +35,15 @@ public class RecordPattern {
             System.out.println("jobTitle: " + u.job.jobTitle);
         }
 
-        printUserWithPatternMatchingSwitch(null);
         printUserWithPatternMatchingSwitch(user);
         printUserWithPatternMatchingSwitch(extendedUser);
 
-        printUserWithPatternMatchingSwitchLogic(null);
         printUserWithPatternMatchingSwitchLogic(user);
         printUserWithPatternMatchingSwitchLogic(extendedUser);
 
     }
 
-    public static void printUserWithPatternMatchingSwitch(Object user){
+    public static void printUserWithPatternMatchingSwitch(Object user) {
         switch (user) {
             case null -> throw new RuntimeException("No user");
             case User u -> System.out.println(u.firstName + " " + u.lastName);
